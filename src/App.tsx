@@ -1,31 +1,27 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import WelcomePage from './components/WelcomePage';
 import PrivateRoute from './utils/PrivateRoute';
-
-// Define a simple Home Page component
-const HomePage: React.FC = () => {
-  return (
-    <div className="container mt-5">
-      <h1>Welcome to the Home Page</h1>
-      <p>This is the homepage of the application. Use the navigation to login.</p>
-    </div>
-  );
-};
+import ContactPage  from './components/ContactPage'// Contact page component
+import Navbar from './components/Navbar';  // Import Navbar component
 
 const App: React.FC = () => {
   return (
     <Router>
+      <Navbar /> {/* Add the Navbar here to display it on all pages */}
       <Routes>
-        {/* Define a route for the home page ("/") */}
-        <Route path="/" element={<HomePage />} />
-        
-        {/* Define a route for the login page */}
+        {/* Redirect / to /login */}
+        <Route path="/" element={<Navigate to="/login" />} />
+
+        {/* Login Page */}
         <Route path="/login" element={<LoginPage />} />
 
-        {/* Define a private route for the welcome page */}
+        {/* Welcome Page protected by PrivateRoute */}
         <Route path="/welcome" element={<PrivateRoute><WelcomePage /></PrivateRoute>} />
+
+        {/* Contact Us Page */}
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </Router>
   );
