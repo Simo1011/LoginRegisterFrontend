@@ -1,18 +1,21 @@
-import React, { useState, FormEvent } from 'react';  // Importing React and necessary hooks
-import { useNavigate } from 'react-router-dom';      // Importing React Router functions
-import AuthService from '../services/AuthService';   // Importing AuthService for handling login
+import React, { useState, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthService from '../services/AuthService';
+import { useAuth } from '../contexts/AuthContext';  // Import useAuth to access AuthContext
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const { login } = useAuth();  // Get login function from AuthContext
   const navigate = useNavigate();
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await AuthService.login(username, password);
-      navigate('/welcome');
+      await AuthService.login(username, password);  // Perform login via AuthService
+      login(username);  // Update the global state with the username
+      navigate('/welcome');  // Redirect to the welcome page after successful login
     } catch (err) {
       setError('Invalid username or password');
     }

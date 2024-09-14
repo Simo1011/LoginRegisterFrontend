@@ -3,27 +3,23 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import LoginPage from './components/LoginPage';
 import WelcomePage from './components/WelcomePage';
 import PrivateRoute from './utils/PrivateRoute';
-import ContactPage  from './components/ContactPage'// Contact page component
-import Navbar from './components/Navbar';  // Import Navbar component
+import ContactPage from './components/ContactPage';
+import Navbar from './components/Navbar';
+import { AuthProvider } from './contexts/AuthContext' // Import AuthProvider
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Navbar /> {/* Add the Navbar here to display it on all pages */}
-      <Routes>
-        {/* Redirect / to /login */}
-        <Route path="/" element={<Navigate to="/login" />} />
-
-        {/* Login Page */}
-        <Route path="/login" element={<LoginPage />} />
-
-        {/* Welcome Page protected by PrivateRoute */}
-        <Route path="/welcome" element={<PrivateRoute><WelcomePage /></PrivateRoute>} />
-
-        {/* Contact Us Page */}
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/welcome" element={<PrivateRoute><WelcomePage /></PrivateRoute>} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 };
 
