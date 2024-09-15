@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
-import WelcomePage from './components/WelcomePage';
+import TaskList from './components/TaskList';    // Task List Component
 import PrivateRoute from './utils/PrivateRoute';
 import ContactPage from './components/ContactPage';
 import Navbar from './components/Navbar';
-import { AuthProvider } from './contexts/AuthContext' // Import AuthProvider
+import { AuthProvider } from './contexts/AuthContext';  // Import AuthProvider
 
 const App: React.FC = () => {
   return (
@@ -13,10 +13,13 @@ const App: React.FC = () => {
       <Router>
         <Navbar />
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/welcome" element={<PrivateRoute><WelcomePage /></PrivateRoute>} />
           <Route path="/contact" element={<ContactPage />} />
+
+          {/* Private Routes */}
+          <Route path="/tasks" element={<PrivateRoute><TaskList /></PrivateRoute>} />
         </Routes>
       </Router>
     </AuthProvider>
