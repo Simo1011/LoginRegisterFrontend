@@ -1,26 +1,30 @@
 // Ensure that CreateTask is exported correctly
-import React, { useState } from 'react';  // This makes it a module because of import
-import { createTask } from '../services/TaskService';
-import { Button, Form } from 'react-bootstrap';
+import React, { useState } from "react"; // This makes it a module because of import
+import { createTask } from "../services/TaskService";
+import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const CreateTask: React.FC = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [dueDate, setDueDate] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [dueDate, setDueDate] = useState("");
   const [completed, setCompleted] = useState(false);
+  const navigate = useNavigate(); // Use navigate to redirect
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const taskData = { title, description, dueDate, completed };
     try {
       await createTask(taskData);
-      alert('Task created successfully!');
-      setTitle('');
-      setDescription('');
-      setDueDate('');
+      alert("Task created successfully!");
+      setTitle("");
+      setDescription("");
+      setDueDate("");
       setCompleted(false);
+      navigate('/tasks'); 
     } catch (error) {
-      console.error('Error creating task', error);
+      console.error("Error creating task", error);
+      alert("Failed to create task");
     }
   };
 
@@ -49,7 +53,7 @@ const CreateTask: React.FC = () => {
         <Form.Group className="mb-3">
           <Form.Label>Due Date</Form.Label>
           <Form.Control
-            type="date"
+            type="datetime-local" // Change this to datetime-local
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
             required

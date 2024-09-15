@@ -1,12 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';  // Use AuthContext for authentication state
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
-import AuthService from '../services/AuthService';  // Import AuthService to get user data
 
 const Navbar: React.FC = () => {
-  const { logout } = useAuth();  // Access the logout function from AuthContext
-  const user = AuthService.getUser();  // Get user info from localStorage
+  const { currentUser, logout } = useAuth();  // Access user and logout from AuthContext
+  const navigate = useNavigate();  // Use navigate for redirection
+
+  const handleLogout = () => {
+    logout();  // Perform logout
+    navigate('/login');  // Redirect to login page after logout
+  };
 
   return (
     <BootstrapNavbar bg="dark" variant="dark" expand="lg">
@@ -15,7 +19,7 @@ const Navbar: React.FC = () => {
           TaskManager
         </BootstrapNavbar.Brand>
         <Nav className="me-auto">
-          {user && (
+          {currentUser && (
             <>
               <Nav.Link as={Link} to="/tasks">Tasks</Nav.Link>
               <Nav.Link as={Link} to="/tasks/new">Create Task</Nav.Link>
@@ -24,10 +28,10 @@ const Navbar: React.FC = () => {
           <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
         </Nav>
         <Nav>
-          {user ? (
+          {currentUser ? (
             <>
-              <span className="navbar-text me-2">Welcome, {user.username}!</span>
-              <Nav.Link onClick={logout}>Logout</Nav.Link>
+              <span className="navbar-text me-2">Welcome, {currentUser.username}!</span>
+              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             </>
           ) : (
             <Nav.Link as={Link} to="/login">Login</Nav.Link>

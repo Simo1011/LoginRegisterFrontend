@@ -47,8 +47,13 @@ export const getAllTasks = async () => {
 
 // Create a new task
 export const createTask = async (taskData: { title: string; description: string; dueDate: string; completed: boolean }) => {
-  return await axiosInstance.post('/', taskData);  // Use relative path, Axios will handle baseURL
-};
+    try {
+      const response = await axiosInstance.post('', taskData);  // Send POST request to create task
+      return response.data;
+    } catch (error) {
+      throw new Error('Error creating task');
+    }
+  };
 
 // Update an existing task
 export const updateTask = async (taskId: number, taskData: { title: string; description: string; dueDate: string; completed: boolean }) => {

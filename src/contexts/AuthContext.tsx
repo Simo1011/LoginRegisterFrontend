@@ -32,6 +32,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     AuthService.logout();  // Call logout from AuthService
     setCurrentUser(null);  // Clear the current user
+
   };
 
   // Function to check if the user is authenticated

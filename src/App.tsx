@@ -5,7 +5,9 @@ import TaskList from './components/TaskList';    // Task List Component
 import PrivateRoute from './utils/PrivateRoute';
 import ContactPage from './components/ContactPage';
 import Navbar from './components/Navbar';
-import { AuthProvider } from './contexts/AuthContext';  // Import AuthProvider
+import { AuthProvider } from './contexts/AuthContext'; 
+import CreateTask from './components/CreateTask'; // Import AuthProvider
+import './App.css';  // Import the custom CSS
 
 const App: React.FC = () => {
   return (
@@ -20,6 +22,8 @@ const App: React.FC = () => {
 
           {/* Private Routes */}
           <Route path="/tasks" element={<PrivateRoute><TaskList /></PrivateRoute>} />
+         
+          <Route path="/tasks/new" element={<PrivateRoute><CreateTask /></PrivateRoute>} />
         </Routes>
       </Router>
     </AuthProvider>
