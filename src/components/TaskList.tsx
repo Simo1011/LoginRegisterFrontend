@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { deleteTask, getAllTasks } from '../services/TaskService';
 import { Button, Modal, Table } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';  
+
 
 const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<any[]>([]);  // Initialize tasks as an empty array
@@ -9,10 +11,13 @@ const TaskList: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     // State to track which task is going to be deleted
   const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
+  const navigate = useNavigate(); 
+  const location = useLocation();  // Get the current route location
 
-  useEffect(() => {
+   // Re-fetch the tasks when the component mounts or the location changes
+   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [location]);  // Trigger fetchTasks when location changes
 
   const fetchTasks = async () => {
     try {
@@ -45,10 +50,14 @@ const TaskList: React.FC = () => {
       }
     }
   };
+   // Navigate to the update task form
+   const handleUpdate = (taskId: number) => {
+    navigate(`/tasks/${taskId}/edit`);
+  };
 
   return (
     <div className="container mt-4">
-    <h3>Your Tasks </h3>
+    <h3>Your Tasks</h3>
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -67,6 +76,14 @@ const TaskList: React.FC = () => {
             <td>{task.dueDate}</td>
             <td>{task.completed ? 'Yes' : 'No'}</td>
             <td>
+              <Button
+                variant="info"
+                size="sm"
+                onClick={() => handleUpdate(task.id)}  // Navigate to update page
+                className="me-2"  // Add margin-right spacing between buttons
+              >
+                Update
+              </Button>
               <Button
                 variant="danger"
                 size="sm"

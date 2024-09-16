@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import { AuthProvider } from './contexts/AuthContext'; 
 import CreateTask from './components/CreateTask'; // Import AuthProvider
 import './App.css';  // Import the custom CSS
+import UpdateTask from './components/UpdateTask';
 
 const App: React.FC = () => {
   return (
@@ -19,10 +20,11 @@ const App: React.FC = () => {
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/contact" element={<ContactPage />} />
+      
 
           {/* Private Routes */}
           <Route path="/tasks" element={<PrivateRoute><TaskList /></PrivateRoute>} />
-         
+          <Route path="/tasks/:taskId/edit" element={<PrivateRoute><UpdateTask /></PrivateRoute>} />
           <Route path="/tasks/new" element={<PrivateRoute><CreateTask /></PrivateRoute>} />
         </Routes>
       </Router>

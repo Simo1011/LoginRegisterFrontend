@@ -56,9 +56,15 @@ export const createTask = async (taskData: { title: string; description: string;
   };
 
 // Update an existing task
-export const updateTask = async (taskId: number, taskData: { title: string; description: string; dueDate: string; completed: boolean }) => {
-  return await axiosInstance.put(`/${taskId}`, taskData);
-};
+// Add this new method to fetch a task by its ID
+export const getTaskById = async (taskId: number) => {
+    return await axiosInstance.get(`/${taskId}`);
+  };
+  
+  // Update a task by its ID
+  export const updateTask = async (taskId: number, taskData: { title: string; description: string; dueDate: string; completed: boolean }) => {
+    return await axiosInstance.put(`/${taskId}`, taskData);  // Ensure you're passing task data for the update
+  };
 
 // Delete a task
 export const deleteTask = async (taskId: number) => {
