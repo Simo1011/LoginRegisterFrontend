@@ -1,6 +1,26 @@
 .App {
   text-align: center;
 }
+.big-checkbox input[type="checkbox"] {
+  transform: scale(1.1);  /* Increase the size of the checkbox */
+  width: 25px;
+  height: 25px;
+}
+/* Apply Google Font globally */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Style specific elements */
+h1, h2, h3, h4,nav {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;  /* Choose a specific font weight */
+}
+
+p, a, button,table,form,textarea,title,.container {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;  /* Lighter font for text */
+}
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +55,33 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/*================*/
+.login-box {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;  /* Ensures it takes full column width */
+  max-width: 400px;  /* Limits max width */
+  margin: auto;  /* Centers it */
+}
+
+.custom-textbox {
+  font-size: 1.1rem;
+  padding: 0.75rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+button {
+  font-size: 1.2rem;
+  padding: 0.75rem;
+}
+
+.container {
+  text-align: center;
 }

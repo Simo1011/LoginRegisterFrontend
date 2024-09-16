@@ -1,17 +1,19 @@
-import React from 'react';                      // Import React
-import { Navigate } from 'react-router-dom';    // Import Navigate from react-router-dom
-import AuthService from '../services/AuthService'; // Import AuthService to check authentication
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import AuthService from '../services/AuthService'; // Use AuthService to check authentication
 
 interface PrivateRouteProps {
-  children: JSX.Element; // Type for the children prop
+  children: JSX.Element;
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-  if (!AuthService.isAuthenticated()) {
-    return <Navigate to="/login" />; // Redirect to login if the user is not authenticated
+  const isAuthenticated = AuthService.isAuthenticated();
+  console.log('Authenticated:', isAuthenticated);
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
   }
 
-  return children; // Render child components if authenticated
+  return children;
 };
-
-export default PrivateRoute; // Export the PrivateRoute component as default
+export default PrivateRoute;
