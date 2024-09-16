@@ -1,6 +1,11 @@
 .App {
   text-align: center;
 }
+.big-checkbox input[type="checkbox"] {
+  transform: scale(1.1);  /* Increase the size of the checkbox */
+  width: 25px;
+  height: 25px;
+}
 /* Apply Google Font globally */
 body {
   font-family: 'Roboto', sans-serif;
@@ -12,7 +17,7 @@ h1, h2, h3, h4,nav {
   font-weight: 500;  /* Choose a specific font weight */
 }
 
-p, a, button,table,form,textarea,title {
+p, a, button,table,form,textarea,title,.container {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;  /* Lighter font for text */
 }

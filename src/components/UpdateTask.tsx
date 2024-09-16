@@ -42,92 +42,100 @@ const UpdateTask: React.FC = () => {
     }
   };
   const handleCancel = () => {
-    navigate('/tasks');  // Redirect to task list when "Cancel" button is clicked
+    navigate("/tasks"); // Redirect to task list when "Cancel" button is clicked
   };
 
   return (
     task && (
-        <Container className="mt-5">
-          <Row className="justify-content-center">
-            <Col xs={12} md={8} lg={6}>
-              <h3 className="text-center mb-4">Update Task</h3>
-              <Form onSubmit={handleUpdate}>
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label column sm={3} className="text-left">
-                    Title
-                  </Form.Label>
-                  <Col sm={9}>
-                    <Form.Control
-                      type="text"
-                      value={task.title}
-                      onChange={(e) => setTask({ ...task, title: e.target.value })}
-                      required
-                    />
-                  </Col>
-                </Form.Group>
-  
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label column sm={3} className="text-left">
-                    Description
-                  </Form.Label>
-                  <Col sm={9}>
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      value={task.description}
-                      onChange={(e) => setTask({ ...task, description: e.target.value })}
-                      required
-                    />
-                  </Col>
-                </Form.Group>
-  
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label column sm={3} className="text-left">
-                    Due Date
-                  </Form.Label>
-                  <Col sm={9}>
-                    <Form.Control
-                      type="date"
-                      value={task.dueDate?.split('T')[0]}  // Ensure date is formatted for input
-                      onChange={(e) => setTask({ ...task, dueDate: e.target.value })}
-                      required
-                    />
-                  </Col>
-                </Form.Group>
-  
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label column sm={3} className="text-left">
-                    Completed
-                  </Form.Label>
-                  <Col sm={9}>
-                    <Form.Check
-                      type="checkbox"
-                      label=""
-                      checked={task.completed}
-                      onChange={(e) => setTask({ ...task, completed: e.target.checked })}
-                    />
-                  </Col>
-                </Form.Group>
-  
-                {/* Add a row for the buttons */}
-                <Row className="justify-content-center">
-                  <Col xs="auto">
-                    <Button variant="primary" type="submit">
-                      Update Task
-                    </Button>
-                  </Col>
-                  <Col xs="auto">
-                    <Button variant="secondary" onClick={handleCancel}>
-                      Cancel
-                    </Button>
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-          </Row>
-        </Container>
-      )
-   
+      <Container className="mt-5">
+        <Row className="justify-content-center">
+          <Col xs={12} md={8} lg={6}>
+            <h3 className="text-center mb-4">Update Task</h3>
+            <Form onSubmit={handleUpdate}>
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm={3} className="text-left">
+                  Title
+                </Form.Label>
+                <Col sm={9}>
+                  <Form.Control
+                    type="text"
+                    value={task.title}
+                    onChange={(e) =>
+                      setTask({ ...task, title: e.target.value })
+                    }
+                    required
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm={3} className="text-left">
+                  Description
+                </Form.Label>
+                <Col sm={9}>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={task.description}
+                    onChange={(e) =>
+                      setTask({ ...task, description: e.target.value })
+                    }
+                    required
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm={3} className="text-left">
+                  Due Date
+                </Form.Label>
+                <Col sm={9}>
+                  <Form.Control
+                    type="date"
+                    value={task.dueDate?.split("T")[0]} // Ensure date is formatted for input
+                    onChange={(e) =>
+                      setTask({ ...task, dueDate: e.target.value })
+                    }
+                    required
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm={3} className="text-left">
+                  Completed
+                </Form.Label>
+                <Col sm={9}>
+                  <Form.Check
+                    type="checkbox"
+                    label=""
+                    checked={task.completed}
+                    onChange={(e) =>
+                      setTask({ ...task, completed: e.target.checked })
+                    }
+                    className="big-checkbox"
+                  />
+                </Col>
+              </Form.Group>
+
+              {/* Add a row for the buttons */}
+              <Row className="justify-content-center">
+                <Col xs="auto">
+                  <Button variant="primary" type="submit">
+                    Update Task
+                  </Button>
+                </Col>
+                <Col xs="auto">
+                  <Button variant="secondary" onClick={handleCancel}>
+                    Cancel
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    )
   );
 };
 export default UpdateTask;

@@ -1,7 +1,7 @@
 // Ensure that CreateTask is exported correctly
 import React, { useState } from "react"; // This makes it a module because of import
 import { createTask } from "../services/TaskService";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const CreateTask: React.FC = () => {
@@ -29,49 +29,78 @@ const CreateTask: React.FC = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h3>Create New Task</h3>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Due Date</Form.Label>
-          <Form.Control
-            type="datetime-local" // Change this to datetime-local
-            value={dueDate}
-            onChange={(e) => setDueDate(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Check
-            type="checkbox"
-            label="Completed"
-            checked={completed}
-            onChange={(e) => setCompleted(e.target.checked)}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Create Task
-        </Button>
-      </Form>
-    </div>
+    <Container className="mt-5">
+    <Row className="justify-content-center">
+      <Col xs={12} md={8} lg={6}>
+        <div className="border p-4 shadow-sm rounded bg-light">
+          <h3 className="text-center mb-4">Create New Task</h3>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3}>
+                Title
+              </Form.Label>
+              <Col sm={9}>
+                <Form.Control
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3}>
+                Description
+              </Form.Label>
+              <Col sm={9}>
+                <Form.Control
+                  type="text"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3}>
+                Due Date
+              </Form.Label>
+              <Col sm={9}>
+                <Form.Control
+                  type="date"
+                  value={dueDate}
+                  onChange={(e) => setDueDate(e.target.value)}
+                  required
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3}>
+                Completed
+              </Form.Label>
+              <Col sm={1}>
+                <Form.Check
+                  type="checkbox" 
+                 
+                  checked={completed}
+                  onChange={(e) => setCompleted(e.target.checked)}
+                    className="big-checkbox"
+                />
+              </Col>
+            </Form.Group>
+            <div className="text-center">
+              <Button variant="primary" type="submit" className="me-2">
+                Create Task
+              </Button>
+              <Button variant="secondary" onClick={() => navigate('/tasks')}>
+                Cancel
+              </Button>
+            </div>
+          </Form>
+        </div>
+      </Col>
+    </Row>
+  </Container>
   );
 };
 
