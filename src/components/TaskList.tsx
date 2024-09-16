@@ -42,7 +42,7 @@ const TaskList: React.FC = () => {
     if (taskToDelete !== null) {
       try {
         await deleteTask(taskToDelete);
-        alert('Task deleted successfully');
+       // alert('Task deleted successfully');
         fetchTasks();  // Refresh task list after deletion
         setShowModal(false);  // Close modal
       } catch (error) {

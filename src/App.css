@@ -1,6 +1,21 @@
 .App {
   text-align: center;
 }
+/* Apply Google Font globally */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Style specific elements */
+h1, h2, h3, h4,nav {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;  /* Choose a specific font weight */
+}
+
+p, a, button,table,form,textarea,title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;  /* Lighter font for text */
+}
 
 .App-logo {
   height: 40vmin;

@@ -9,6 +9,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import CreateTask from './components/CreateTask'; // Import AuthProvider
 import './App.css';  // Import the custom CSS
 import UpdateTask from './components/UpdateTask';
+import WelcomePage from './components/WelcomePage';
 
 const App: React.FC = () => {
   return (
@@ -17,7 +18,8 @@ const App: React.FC = () => {
         <Navbar />
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<WelcomePage />} /> {/* Set WelcomePage as the home page */}
+          <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/contact" element={<ContactPage />} />
       
