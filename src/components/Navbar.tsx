@@ -34,7 +34,10 @@ const Navbar: React.FC = () => {
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             </>
           ) : (
-            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            <>
+              <Nav.Link as={Link} to="/login">Login</Nav.Link>
+              <Nav.Link as={Link} to="/register">Register</Nav.Link> {/* Add Register link */}
+            </>
           )}
         </Nav>
       </Container>

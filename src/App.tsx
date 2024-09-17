@@ -10,6 +10,7 @@ import CreateTask from './components/CreateTask'; // Import AuthProvider
 import './App.css';  // Import the custom CSS
 import UpdateTask from './components/UpdateTask';
 import WelcomePage from './components/WelcomePage';
+import RegisterPage from './components/RegisterPage';
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/register" element={<RegisterPage />} />
       
 
           {/* Private Routes */}
